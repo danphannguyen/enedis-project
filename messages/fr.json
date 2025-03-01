@@ -3,6 +3,7 @@
         "title": "Bonjour le monde!"
     },
     "contentView": {
-        "titleGraph": "Consommation d'énergie"
+        "titleGraph": "Évolution de la thermosensibilité en France",
+        "titleAside": "Filtres"
     }
 }

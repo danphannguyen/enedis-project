@@ -3,6 +3,7 @@
         "title": "Hello world!"
     },
     "contentView": {
-        "titleGraph": "Energy Consumption"
+        "titleGraph": "Evolution of thermosensitivity in France",
+        "titleAside": "Filters"
     }
 }

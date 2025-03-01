@@ -53,11 +53,6 @@ body {
   background-color: var(--foreground);
 }
 
-#navbar-logo {
-  width: 32px;
-  height: 32px;
-}
-
 #navbar-link {
   font-family: 'satoshi-bold';
   color: var(--blue);
