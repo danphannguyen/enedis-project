@@ -7,7 +7,7 @@ Evolution of Average Thermosensitive Consumption (MWh) Compared to the Network's
 - Next JS (Front)
 -> [Get started](https://nextjs.org/docs/app/getting-started/installation) 
 
-- Valkey (Caching)
+- Redis Upstash (Caching)
 -> Get started 
 
 - Next-intl (internationalization with i1!n)

@@ -4,7 +4,8 @@ import redis from '@/lib/redis';
 import { EnedisApiService } from '@/services/enedis-api';
 
 export async function GET(req: NextRequest) {
-    const cacheKey = 'myApiData';
+    console.log(req);
+    const cacheKey = "Aisne";
 
     // Try to retrieve data from Redis cache
     const cachedData = await redis.get(cacheKey);

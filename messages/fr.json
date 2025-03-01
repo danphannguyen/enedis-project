@@ -1,6 +1,8 @@
 {
     "HomePage": {
-        "title": "Bonjour le monde!",
-        "about": "Aller à la page à propos"
+        "title": "Bonjour le monde!"
+    },
+    "GraphView": {
+        "title": "Consommation d'énergie"
     }
 }
