@@ -1,6 +1,7 @@
 const ENEDIS_API_BASE_URL = "https://data.enedis.fr/api/explore/v2.1/catalog/datasets/consommation-electrique-par-secteur-dactivite-commune/records";
 
 export class EnedisApiService {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     static async getConsumptionByDepartment(filters: Record<string, string | number>, limit: number = 20): Promise<any> {
         try {
             const selectParams = "annee, nom_departement, AVG(conso_moyenne_usages_thermosensibles_mwh) AS moyenne_usages_thermosensibles_mwh, AVG(part_thermosensible) AS moyenne_part_thermosensible";
