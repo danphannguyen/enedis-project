@@ -17,19 +17,29 @@ export default function HomePage() {
 
     useEffect(() => {
         async function fetchDataGraph(nomDepartement: string) {
-            try {
-                const filters = {
-                    conso_moyenne_usages_thermosensibles_mwh: 0,
-                    part_thermosensible: 0,
-                    nom_departement: nomDepartement
-                };
-                const data = await EnedisApiService.getConsumptionByDepartment(filters, 50);
-                console.log("Données Enedis :", data);
-            } catch (error) {
-                console.error("Erreur :", error);
+            // Try to retrieve data from Redis cache
+            const cachedData = await redis.get(nomDepartement);
+            if (cachedData) {
+                console.log('Serving from cache');
+                console.log(cachedData)
+                return cachedData;
+            } else {
+                try {
+                    const filters = {
+                        conso_moyenne_usages_thermosensibles_mwh: 0,
+                        part_thermosensible: 0,
+                        nom_departement: nomDepartement
+                    };
+                    const data = await EnedisApiService.getConsumptionByDepartment(filters, 50);
+                    redis.setex(nomDepartement, 3600, JSON.stringify(data));
+
+                    console.log('Serving from Enedis API');
+                    console.log(data)
+                    return data
+                } catch (error) {
+                    console.error("Erreur :", error);
+                }
             }
-            const count = await redis.incr("counter");
-            console.log(count)
         }
 
         fetchDataGraph("Aisne"); // Remplace "Paris" par un département dynamique si nécessaire
