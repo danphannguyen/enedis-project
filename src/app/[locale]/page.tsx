@@ -9,6 +9,9 @@ import { useEffect } from 'react';
 // Import custom services
 import { EnedisApiService } from '@/services/enedis-api';
 
+// Import redis
+import redis from '@/lib/redis'
+
 export default function HomePage() {
     const t = useTranslations('HomePage');
 
@@ -25,6 +28,8 @@ export default function HomePage() {
             } catch (error) {
                 console.error("Erreur :", error);
             }
+            const count = await redis.incr("counter");
+            console.log(count)
         }
 
         fetchDataGraph("Aisne"); // Remplace "Paris" par un département dynamique si nécessaire
