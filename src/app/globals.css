@@ -6,19 +6,108 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F6F6FE;
+  --foreground: #ffffff;
+
+  --blue: #1423DC;
+  --green: #698f23;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    --blue: #1423DC;
+    --green: #698f23;
   }
 }
 
+@font-face {
+  font-family: 'satoshi-medium';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/fonts/Satoshi/Satoshi-Medium.ttf) format('ttf'),
+    url(/fonts/Satoshi/Satoshi-Medium.woff) format('woff'),
+    url(/fonts/Satoshi/Satoshi-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'satoshi-bold';
+  font-style: black;
+  font-display: swap;
+  src: url(/fonts/Satoshi/Satoshi-Bold.ttf) format('ttf'),
+    url(/fonts/Satoshi/Satoshi-Bold.woff) format('woff'),
+    url(/fonts/Satoshi/Satoshi-Bold.woff2) format('woff2');
+}
+
 body {
-  color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'satoshi-medium', Helvetica, sans-serif;
+}
+
+/* ========== Navbar ========== */
+
+#navbar {
+  background-color: var(--foreground);
+}
+
+#navbar-logo {
+  width: 32px;
+  height: 32px;
+}
+
+#navbar-link {
+  font-family: 'satoshi-bold';
+  color: var(--blue);
+}
+
+#navbar-link a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ========== Content ========== */
+
+#content-wrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 5vw;
+  grid-row-gap: 0px;
+  padding: 10vh 5vw 10vh 5vw
+}
+
+#content-wrapper section {
+  height: 100%;
+  background-color: var(--foreground);
+  grid-area: 1 / 1 / 2 / 4;
+}
+
+#content-section-title {
+  font-family: 'satoshi-bold';
+  color: var(--blue);
+}
+
+#content-wrapper aside {
+  height: 100%;
+  background-color: var(--foreground);
+  grid-area: 1 / 4 / 2 / 6;
+}
+
+#content-aside-title {
+  font-family: 'satoshi-bold';
+  color: var(--green);
+}
+
+/* ========== Footer ========== */
+
+#footer {
+  opacity: 0.3;
+}
+
+#footer img {
+  height: 30px;
 }
