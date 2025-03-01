@@ -4,51 +4,56 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
 // Import react
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // Import custom services
 import { EnedisApiService } from '@/services/enedis-api';
 
-// Import redis
-import redis from '@/lib/redis'
-
 export default function HomePage() {
     const t = useTranslations('HomePage');
+    const [data, setData] = useState<any>(null); // Utilisez 'any' ou définissez un type adapté pour 'data'
+    const [loading, setLoading] = useState(true); // Indicateur de chargement
+    const [error, setError] = useState<string | null>(null); // Gérer les erreurs
+
 
     useEffect(() => {
-        async function fetchDataGraph(nomDepartement: string) {
-            // Try to retrieve data from Redis cache
-            const cachedData = await redis.get(nomDepartement);
-            if (cachedData) {
-                console.log('Serving from cache');
-                console.log(cachedData)
-                return cachedData;
-            } else {
-                try {
-                    const filters = {
-                        conso_moyenne_usages_thermosensibles_mwh: 0,
-                        part_thermosensible: 0,
-                        nom_departement: nomDepartement
-                    };
-                    const data = await EnedisApiService.getConsumptionByDepartment(filters, 50);
-                    redis.setex(nomDepartement, 3600, JSON.stringify(data));
+        // Fonction pour récupérer les données depuis l'API
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/caching'); // Appel à /api/caching
 
-                    console.log('Serving from Enedis API');
-                    console.log(data)
-                    return data
-                } catch (error) {
-                    console.error("Erreur :", error);
+                // Si la réponse est OK
+                if (response.ok) {
+                    const result = await response.json();
+                    setData(result); // Stocker les données dans l'état
+                    console.log('Données récupérées :', result); // Afficher les données dans la console
+                } else {
+                    setError('Une erreur est survenue.');
                 }
+            } catch (err) {
+                setError('Une erreur est survenue lors de la récupération des données.');
+                console.error(err); // Afficher l'erreur dans la console
+            } finally {
+                setLoading(false); // Changer l'état de chargement
             }
-        }
+        };
 
-        fetchDataGraph("Aisne"); // Remplace "Paris" par un département dynamique si nécessaire
-    }, []);
+        fetchData();
+    }, []); // Le tableau vide [] signifie que l'effet se déclenche uniquement au montage du composant
+
+    if (loading) return <div>Chargement...</div>; // Afficher un message de chargement
+    if (error) return <div>{error}</div>; // Afficher l'erreur, s'il y en a une
 
     return (
-        <div>
-            <h1>{t('title')}</h1>
-            <Link href="/about">{t('about')}</Link>
-        </div>
+        <>
+            <div>
+                <h1>{t('title')}</h1>
+                <Link href="/about">{t('about')}</Link>
+            </div>
+            <div>
+                <h1>Consommation d'énergie</h1>
+                <pre>{JSON.stringify(data, null, 2)}</pre> {/* Affichage des données */}
+            </div>
+        </>
     );
 }
