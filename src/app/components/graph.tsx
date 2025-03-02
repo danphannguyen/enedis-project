@@ -10,6 +10,8 @@ import {
     LinearScale,
     BarElement,
     BarController,
+    LineController, 
+    LineElement,
     Title,
     Tooltip,
     Legend
@@ -21,6 +23,8 @@ ChartJS.register(
     LinearScale,
     BarElement,
     BarController,
+    LineController, 
+    LineElement,
     Title,
     Tooltip,
     Legend
