@@ -55,7 +55,7 @@ export default function ContentView() {
                 <h2 id='content-aside-title' className='text-2xl'>{t('titleAside')}</h2>
                 <Form onSubmit={handleFormSubmit}/>
             </aside>
-            <div id='content-description' className="p-8 rounded-lg flex flex-col items-start justify-start gap-2 overflow-scroll">
+            <div id='content-description' className="p-8 rounded-lg flex flex-col items-start justify-start gap-2 overflow-y-scroll">
                 <h2 id='content-description-title' className='text-2xl'>{t('titleDescription')}</h2>
                 <p>{t('contentDescription')}</p>
                 <div>Source : <a href="https://data.enedis.fr/api/datasets/1.0/consommation-electrique-par-secteur-dactivite-epci/attachments/note_methodologique_thermosensibilite_pdf/?utm_source=chatgpt.com">Data Enedis</a> & <a href="https://www.enedis.fr/presse/2e-panorama-thermosensibilite-action-coeur-de-ville?utm_source=chatgpt.com">Enedis</a>
