@@ -4,10 +4,27 @@
 import { useTranslations } from 'next-intl';
 
 // Import Chart JS
-import { Chart as ChartJS, BarElement, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement } from 'chart.js';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    BarController,
+    Title,
+    Tooltip,
+    Legend
+} from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
-ChartJS.register(BarElement, LineElement, PointElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    BarController,
+    Title,
+    Tooltip,
+    Legend
+);
 
 interface GraphProps {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
