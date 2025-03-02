@@ -4,6 +4,14 @@
     },
     "contentView": {
         "titleGraph": "Évolution de la thermosensibilité en France",
-        "titleAside": "Filtres"
+        "titleAside": "Votre Département",
+        "titleDescription": "💡 Qu'est ce que la Thermosensibilité ?"
+    },
+    "Chart": {
+        "chartTitle": "Comparaison des Usages Thermosensibles et Part Thermosensible",
+        "averageUses": "Moyenne Usages Thermosensibles (Échelle Normalisée)",
+        "averagePart": "Moyenne Part Thermosensible (%)",
+        "loading": "Chargement...",
+        "error": "Une erreur est survenue"
     }
 }

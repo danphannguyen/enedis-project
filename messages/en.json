@@ -4,6 +4,14 @@
     },
     "contentView": {
         "titleGraph": "Evolution of thermosensitivity in France",
-        "titleAside": "Filters"
+        "titleAside": "Your Department",
+        "titleDescription": "💡 What is Thermosensitivity?"
+    },
+    "Chart": {
+        "chartTitle": "Comparison of Thermosensitive Uses and Thermosensitive Part",
+        "averageUses": "Average Thermosensitive Uses (Normalized Scale)",
+        "averagePart": "Average Thermosensitive Part (%)",
+        "loading": "Loading...",
+        "error": "An error occurred"
     }
 }

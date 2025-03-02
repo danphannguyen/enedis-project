@@ -13,6 +13,8 @@ export class EnedisApiService {
                 )
                 .join(" and ");
 
+            console.log("Conditions de la requête WHERE :", whereConditions); // Vérifier les conditions
+
             const queryParams = new URLSearchParams({
                 select: selectParams,
                 where: whereConditions,
@@ -21,7 +23,7 @@ export class EnedisApiService {
             });
 
             const url = `${ENEDIS_API_BASE_URL}?${queryParams.toString()}`;
-            console.log("Requête API Enedis :", url);
+            console.log("Requête API Enedis :", url); // Vérifier l'URL complète de la requête
 
             const response = await fetch(url);
 

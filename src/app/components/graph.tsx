@@ -1,45 +1,90 @@
-'use client'
-// Import react
-import { useEffect, useState } from 'react';
+// Graph.tsx
+'use client';
 
-export default function Graph() {
+import { useTranslations } from 'next-intl';
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [data, setData] = useState<any>(null); // Utilisez 'any' ou définissez un type adapté pour 'data'
-    const [loading, setLoading] = useState(true); // Indicateur de chargement
-    const [error, setError] = useState<string | null>(null); // Gérer les erreurs
+import { Chart as ChartJS, BarElement, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement } from 'chart.js';
+import { Chart } from 'react-chartjs-2';
 
-    useEffect(() => {
-        // Fonction pour récupérer les données depuis l'API
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/caching');
+ChartJS.register(BarElement, LineElement, PointElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
-                if (response.ok) {
-                    const result = await response.json();
-                    setData(result);
-                    console.log('Données récupérées :', result);
-                } else {
-                    setError('Une erreur est survenue.');
-                }
-            } catch (err) {
-                setError('Une erreur est survenue lors de la récupération des données.');
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
+interface GraphProps {
+    data: any;
+    loading: boolean;
+    error: string | null;
+}
+
+export default function Graph({ data, loading, error }: GraphProps) {
+    const t = useTranslations('Chart');
+
+    if (loading) return <div>Chargement...</div>;
+    if (error) return <div>{error}</div>;
+
+    const transformData = (rawData: any) => {
+        if (!rawData) return { labels: [], datasets: [] };
+
+        const labels = rawData.map((item: any) =>
+            new Date(item.annee).getFullYear().toString()
+        );
+
+        // Trouver la valeur maximale des usages thermosensibles
+        const maxMwh = Math.max(...rawData.map((item: any) => item.moyenne_usages_thermosensibles_mwh));
+
+        const usagesThermosensibles = rawData.map(
+            (item: any) => (item.moyenne_usages_thermosensibles_mwh / maxMwh) * 100 // Normalisation
+        );
+
+        const partThermosensible = rawData.map(
+            (item: any) => item.moyenne_part_thermosensible
+        );
+
+        return {
+            labels,
+            datasets: [
+                {
+                    label: t('averageUses'),
+                    data: usagesThermosensibles,
+                    borderColor: "#0f1bb5",
+                    backgroundColor: "#1423DC",
+                    stack: "combined",
+                    type: "bar" as const,
+                },
+                {
+                    label: t('averagePart'), // Traduction du label
+                    data: partThermosensible,
+                    borderColor: "#698f23",
+                    backgroundColor: "#698f23",
+                    stack: "combined",
+                    type: "line" as const,
+                },
+            ],
         };
+    };
 
-        fetchData();
-    }, []);
-
-    if (loading) return <div>Chargement...</div>; // Afficher un message de chargement
-    if (error) return <div>{error}</div>; // Afficher l'erreur, s'il y en a une
+    const options = {
+        plugins: {
+            title: {
+                display: true,
+                text: t('chartTitle'),
+            },
+            legend: {
+                position: "top" as const,
+            },
+        },
+        responsive: true,
+        scales: {
+            y: {
+                stacked: true,
+            },
+        },
+    };
 
     return (
         <>
-            <pre>{JSON.stringify(data, null, 2)}</pre>{/*  Affichage des données */}
+            <div className="w-full h-full flex items-center justify-center">
+                {data && <Chart type="bar" data={transformData(data)} options={options} />}
+            </div>
+            {/* Debug <pre>{JSON.stringify(data, null, 2)}</pre> */}
         </>
-
     );
 }

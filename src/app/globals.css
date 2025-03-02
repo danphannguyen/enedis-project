@@ -10,6 +10,7 @@
   --foreground: #ffffff;
 
   --blue: #1423DC;
+  --blue-hover: #0f1bb5;
   --green: #698f23;
 }
 
@@ -19,6 +20,7 @@
     --foreground: #ededed;
 
     --blue: #1423DC;
+    --blue-hover: #0f1bb5;
     --green: #698f23;
   }
 }
@@ -56,10 +58,13 @@ body {
 #navbar-link {
   font-family: 'satoshi-bold';
   color: var(--blue);
+  transition: all 1s ease-in-out;
+  
 }
 
 #navbar-link a:hover {
   text-decoration: underline;
+  color: var(--blue-hover);
   cursor: pointer;
 }
 
@@ -69,16 +74,16 @@ body {
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 5vw;
-  grid-row-gap: 0px;
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 2vw;
+  grid-row-gap: 2vw;
   padding: 10vh 5vw 10vh 5vw
 }
 
 #content-wrapper section {
   height: 100%;
   background-color: var(--foreground);
-  grid-area: 1 / 1 / 2 / 4;
+  grid-area: 1 / 1 / 6 / 4;
 }
 
 #content-section-title {
@@ -89,12 +94,73 @@ body {
 #content-wrapper aside {
   height: 100%;
   background-color: var(--foreground);
-  grid-area: 1 / 4 / 2 / 6;
+  grid-area: 1 / 4 / 3 / 6;
 }
 
 #content-aside-title {
   font-family: 'satoshi-bold';
   color: var(--green);
+}
+
+#content-description {
+  height: 100%;
+  background-color: var(--foreground);
+  color: var(--blue);
+  grid-area: 3 / 4 / 6 / 6;
+}
+
+#content-description a{
+  text-decoration: underline;
+  transition: all 1s ease-in-out;
+}
+
+#content-description a:hover{
+  color: var(--blue-hover);
+}
+
+#content-description-title {
+  font-family: 'satoshi-bold';
+  color: var(--blue);
+}
+
+#departement-select {
+  width: 100%;
+  padding: 10px;
+  font-family: 'satoshi-medium', Helvetica, sans-serif;
+  background-color: var(--foreground);
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%231423DC" d="M2 0L0 2h4zM2 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+}
+
+#department-select:hover {
+  cursor: pointer;
+  border-color: var(--blue-hover);
+}
+
+#department-select:focus {
+  outline: none;
+  border-color: var(--blue-hover);
+}
+
+#department-submit {
+  font-family: 'satoshi-bold';
+  padding: 5px 10px 5px 10px;
+  background-color: var(--blue);
+  color: var(--background);
+}
+
+#department-submit:hover {
+  cursor: pointer;
+  background-color: var(--blue-hover);
+  color: var(--foreground);
 }
 
 /* ========== Footer ========== */

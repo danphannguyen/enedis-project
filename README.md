@@ -10,6 +10,9 @@ Evolution of Average Thermosensitive Consumption (MWh) Compared to the Network's
 - Redis Upstash (Caching)
 -> Get started 
 
-- Next-intl (internationalization with i1!n)
+- Next-intl (internationalization with i18n)
 -> [Get started ](https://next-intl.dev/docs/getting-started/app-router/with-i18n-routing)
+
+- Chart JS ( for charts )
+-> [Get started ](https://www.chartjs.org/docs/latest/getting-started)
 
