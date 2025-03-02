@@ -57,7 +57,7 @@ export default function ContentView() {
             </aside>
             <div id='content-description' className="p-8 rounded-lg flex flex-col items-start justify-start gap-2 overflow-scroll">
                 <h2 id='content-description-title' className='text-2xl'>{t('titleDescription')}</h2>
-                <p>La thermosensibilité, selon Enedis, désigne la variation de la consommation électrique en fonction des températures extérieures. Elle reflète l&apos;influence de la température sur l&apos;utilisation de l&apos;énergie, notamment pour le chauffage en hiver et la climatisation en été. Par exemple, une baisse de température d&apos;un degré peut entraîner une augmentation de la consommation de 10 kWh, ce qui correspond à une thermosensibilité de 10 kWh/degré-jour. Enedis fournit des données sur la thermosensibilité pour aider les collectivités locales à établir des diagnostics énergétiques et orienter leurs politiques de rénovation énergétique.</p>
+                <p>{t('contentDescription')}</p>
                 <div>Source : <a href="https://data.enedis.fr/api/datasets/1.0/consommation-electrique-par-secteur-dactivite-epci/attachments/note_methodologique_thermosensibilite_pdf/?utm_source=chatgpt.com">Data Enedis</a> & <a href="https://www.enedis.fr/presse/2e-panorama-thermosensibilite-action-coeur-de-ville?utm_source=chatgpt.com">Enedis</a>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 
 interface FormProps {
@@ -26,6 +27,8 @@ const departements = [
 ];
 
 export default function Form({ onSubmit }: FormProps) {
+    const t = useTranslations('Form');
+
     const [departement, setDepartement] = useState<string>(''); // État local pour le département
 
     const handleDepartementChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -48,14 +51,14 @@ export default function Form({ onSubmit }: FormProps) {
                 value={departement}
                 onChange={handleDepartementChange}
             >
-                <option value="">Sélectionner un département</option>
+                <option value="">{t('select')}</option>
                 {departements.map((dep) => (
                     <option key={dep} value={dep}>
                         {dep}
                     </option>
                 ))}
             </select>
-            <button id='department-submit' type="submit">Envoyer</button>
+            <button id='department-submit' type="submit">{t('send')}</button>
         </form>
     );
 }

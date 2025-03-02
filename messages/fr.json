@@ -5,7 +5,8 @@
     "contentView": {
         "titleGraph": "Évolution de la thermosensibilité en France",
         "titleAside": "Votre Département",
-        "titleDescription": "💡 Qu'est ce que la Thermosensibilité ?"
+        "titleDescription": "💡 Qu'est ce que la Thermosensibilité ?",
+        "contentDescription": "La thermosensibilité, selon Enedis, désigne la variation de la consommation électrique en fonction des températures extérieures. Elle reflète l'influence de la température sur l'utilisation de l'énergie, notamment pour le chauffage en hiver et la climatisation en été. Par exemple, une baisse de température d'un degré peut entraîner une augmentation de la consommation de 10 kWh, ce qui correspond à une thermosensibilité de 10 kWh/degré-jour. Enedis fournit des données sur la thermosensibilité pour aider les collectivités locales à établir des diagnostics énergétiques et orienter leurs politiques de rénovation énergétique."
     },
     "Chart": {
         "chartTitle": "Comparaison des Usages Thermosensibles et Part Thermosensible",
@@ -13,5 +14,9 @@
         "averagePart": "Moyenne Part Thermosensible (%)",
         "loading": "Chargement...",
         "error": "Une erreur est survenue"
+    },
+    "Form": {
+        "select": "Sélectionner un département",
+        "send": "Envoyer"
     }
 }

@@ -5,7 +5,8 @@
     "contentView": {
         "titleGraph": "Evolution of thermosensitivity in France",
         "titleAside": "Your Department",
-        "titleDescription": "💡 What is Thermosensitivity?"
+        "titleDescription": "💡 What is Thermosensitivity?",
+        "contentDescription": "Thermosensitivity, according to Enedis, refers to the variation in electricity consumption based on outside temperatures. It reflects the influence of temperature on energy use, particularly for heating in winter and air conditioning in summer. For example, a one-degree drop in temperature can lead to an increase in consumption of 10 kWh, which corresponds to a thermosensitivity of 10 kWh/degree-day. Enedis provides data on thermosensitivity to help local communities establish energy diagnostics and guide their energy renovation policies."
     },
     "Chart": {
         "chartTitle": "Comparison of Thermosensitive Uses and Thermosensitive Part",
@@ -13,5 +14,9 @@
         "averagePart": "Average Thermosensitive Part (%)",
         "loading": "Loading...",
         "error": "An error occurred"
+    },
+    "Form": {
+        "select": "Select a department",
+        "send": "Send"
     }
 }
