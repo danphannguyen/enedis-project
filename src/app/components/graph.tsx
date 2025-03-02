@@ -1,14 +1,16 @@
-// Graph.tsx
 'use client';
 
+// Import Internationalization
 import { useTranslations } from 'next-intl';
 
+// Import Chart JS
 import { Chart as ChartJS, BarElement, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
 ChartJS.register(BarElement, LineElement, PointElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 interface GraphProps {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any;
     loading: boolean;
     error: string | null;
@@ -20,21 +22,27 @@ export default function Graph({ data, loading, error }: GraphProps) {
     if (loading) return <div>Chargement...</div>;
     if (error) return <div>{error}</div>;
 
+    // ? Change Data from Enedis API format to Chart JS format
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const transformData = (rawData: any) => {
         if (!rawData) return { labels: [], datasets: [] };
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const labels = rawData.map((item: any) =>
             new Date(item.annee).getFullYear().toString()
         );
 
         // Trouver la valeur maximale des usages thermosensibles
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const maxMwh = Math.max(...rawData.map((item: any) => item.moyenne_usages_thermosensibles_mwh));
 
         const usagesThermosensibles = rawData.map(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (item: any) => (item.moyenne_usages_thermosensibles_mwh / maxMwh) * 100 // Normalisation
         );
 
         const partThermosensible = rawData.map(
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (item: any) => item.moyenne_part_thermosensible
         );
 
@@ -50,7 +58,7 @@ export default function Graph({ data, loading, error }: GraphProps) {
                     type: "bar" as const,
                 },
                 {
-                    label: t('averagePart'), // Traduction du label
+                    label: t('averagePart'),
                     data: partThermosensible,
                     borderColor: "#698f23",
                     backgroundColor: "#698f23",
@@ -61,6 +69,7 @@ export default function Graph({ data, loading, error }: GraphProps) {
         };
     };
 
+    // ? Chart JS Option
     const options = {
         plugins: {
             title: {

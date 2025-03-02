@@ -2,6 +2,7 @@
 // Import i18n
 import { useTranslations } from 'next-intl';
 
+// Custom components imports
 import ContentView from './content';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
