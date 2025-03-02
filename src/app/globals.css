@@ -14,7 +14,7 @@
   --green: #698f23;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -23,7 +23,7 @@
     --blue-hover: #0f1bb5;
     --green: #698f23;
   }
-}
+} */
 
 @font-face {
   font-family: 'satoshi-medium';
